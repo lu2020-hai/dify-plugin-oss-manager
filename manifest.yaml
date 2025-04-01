@@ -1,0 +1,27 @@
+version: 0.0.1
+type: plugin
+author: lu2020
+name: oss-manager
+label:
+  en_US: OSS Manager
+  zh_Hans: 对象存储管理工具
+description:
+  en_US: A tool for managing multiple types of object storage services.
+  zh_Hans: 用于管理多种对象存储服务的工具。
+icon: icon.svg
+resource:
+  memory: 268435456
+plugins:
+  tools:
+    - provider/oss.yaml
+meta:
+  version: 0.0.2
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+created_at: 2025-03-30T19:37:00.7735334+08:00
+verified: false

@@ -1,0 +1,83 @@
+identity:
+  author: lu2020
+  name: oss-manager
+  label:
+    en_US: OSS Manager
+    zh_Hans: 对象存储管理工具
+  description:
+    en_US: A tool for managing multiple types of object storage services.
+    zh_Hans: 用于管理多种对象存储服务的工具。
+  icon: icon.svg
+tools:
+  - tools/save_storage.yaml
+  - tools/delete_storage.yaml
+  - tools/query_files_storage.yaml
+extra:
+  python:
+    source: provider/oss.py
+credentials_for_provider:
+  storage_type:
+    type: select
+    required: true
+    label:
+      en_US: Object Storage Type
+      zh_Hans: 对象存储类型
+    human_description:
+      en_US: Select the type of object storage service you want to connect to.
+      zh_Hans: 选择您要连接的对象存储服务类型。
+    form: form
+    default: s3
+    options:
+    - value: s3
+      label:
+        en_US: Amazon S3
+        zh_Hans: 亚马逊 S3
+    - value: aliyun-oss
+      label:
+        en_US: Alibaba Cloud OSS
+        zh_Hans: 阿里云 OSS
+    - value: azure-blob
+      label:
+        en_US: Azure Blob Storage
+        zh_Hans: Azure Blob 存储
+    - value: baidu-obs
+      label:
+        en_US: Baidu Object Storage (BOS)
+        zh_Hans: 百度对象存储 (BOS)
+    - value: google-storage
+      label:
+        en_US: Google Cloud Storage
+        zh_Hans: 谷歌云存储
+    - value: huawei-obs
+      label:
+        en_US: Huawei Cloud OBS
+        zh_Hans: 华为云 OBS
+    - value: oci-storage
+      label:
+        en_US: Oracle Cloud Infrastructure Storage
+        zh_Hans: 甲骨文云基础设施存储
+    - value: tencent-cos
+      label:
+        en_US: Tencent Cloud COS
+        zh_Hans: 腾讯云 COS
+    - value: volcengine-tos
+      label:
+        en_US: Volcengine TOS
+        zh_Hans: 火山引擎 TOS
+    - value: supabase
+      label:
+        en_US: Supabase Storage
+        zh_Hans: Supabase 存储
+  config_json:
+    help:
+      en_US: A JSON object containing the configuration details for the selected object storage service.
+      zh_Hans: 包含所选对象存储服务配置详情的 JSON 对象。
+    label:
+      en_US: Configuration JSON
+      zh_Hans: 配置 JSON
+    placeholder:
+      en_US: 'Enter the configuration in JSON format, e.g., {"storage_type": "s3", "S3_USE_AWS_MANAGED_IAM": false, "S3_ENDPOINT": "...", "S3_BUCKET_NAME": "...", "S3_ACCESS_KEY": "...", "S3_SECRET_KEY": "...", "S3_REGION": "..."}'
+      zh_Hans: '请输入 JSON 格式的配置，例如：S3配置 {"S3_USE_AWS_MANAGED_IAM": "false", "S3_ENDPOINT": "...", "S3_BUCKET_NAME": "...", "S3_ACCESS_KEY": "...", "S3_SECRET_KEY": "...", "S3_REGION": "..."}'
+    required: true
+    type: secret-input
+    url: https://docs.dify.ai/getting-started/install-self-hosted/environments#file-storage-configuration

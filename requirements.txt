@@ -1,0 +1,16 @@
+dify_plugin
+boto3
+botocore
+supabase
+azure-storage-blob
+azure-identity
+pydantic
+oss2
+google-cloud-storage
+google-auth
+google-api-core
+esdk-obs-python
+requests
+six
+opendal
+tos
