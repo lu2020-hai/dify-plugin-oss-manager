@@ -32,10 +32,10 @@ class BaseStorage(ABC):
     def delete(self, filename):
         raise NotImplementedError
 
-    @abstractmethod
+    # @abstractmethod
     def query_files(self, prefix: str = None, suffix: str = None) -> Dict[str, List[Dict[str, str]]]:
         raise NotImplementedError
 
-    @abstractmethod
-    def append_safe(self, filename: str, data: bytes):
+    # @abstractmethod
+    def get_file_metadata(self, filename: str) -> dict:
         raise NotImplementedError

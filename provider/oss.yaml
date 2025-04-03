@@ -12,6 +12,7 @@ tools:
   - tools/save_storage.yaml
   - tools/delete_storage.yaml
   - tools/query_files_storage.yaml
+  - tools/download_storage.yaml
 extra:
   python:
     source: provider/oss.py

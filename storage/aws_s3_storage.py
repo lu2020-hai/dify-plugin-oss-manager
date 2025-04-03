@@ -1,4 +1,5 @@
 import logging
+import os
 from collections.abc import Generator
 from typing import Dict, List
 
@@ -7,6 +8,7 @@ from botocore.client import Config  # type: ignore
 from botocore.exceptions import ClientError  # type: ignore
 
 from storage.base_storage import BaseStorage
+from tools.get_file_meta import infer_file_info
 
 logger = logging.getLogger(__name__)
 
@@ -98,7 +100,7 @@ class AwsS3Storage(BaseStorage):
         directories = []
 
         if prefix is None:
-            query_prefix = ""
+            query_prefix = "/"
         else:
             query_prefix = prefix.rstrip("/") + "/"
 
@@ -125,3 +127,39 @@ class AwsS3Storage(BaseStorage):
             raise
 
         return {"file": files, "directory": directories}
+
+    def get_file_metadata(self, filename: str) -> dict:
+        """
+        获取文件的元数据信息。
+
+        :param filename: 文件名或路径。
+        :return: 包含文件元数据的字典。
+        """
+        if not self.exists(filename):
+            raise FileNotFoundError(f"File not found: {filename}")
+
+        try:
+            # 使用 head_object 获取文件元数据
+            response = self.client.head_object(Bucket=self.bucket_name, Key=filename)
+
+            # 提取文件名和扩展名
+            base_filename = os.path.basename(filename)
+            extension = os.path.splitext(base_filename)[1]
+
+            mime_type, file_type = infer_file_info(filename)
+            # 构造元数据字典
+            meta = {
+                "dify_model_identity": "__dify__file__",
+                "mime_type": mime_type,
+                "file_type": file_type.value,
+                "filename": base_filename,
+                "extension": extension,
+                "size": response.get("ContentLength", 0),
+            }
+        except ClientError as ex:
+            if ex.response["Error"]["Code"] == "NoSuchKey":
+                raise FileNotFoundError(f"File not found: {filename}")
+            else:
+                raise
+        return meta
+

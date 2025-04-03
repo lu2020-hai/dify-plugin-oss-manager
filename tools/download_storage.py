@@ -11,5 +11,6 @@ class DownloadStorageTool(Tool):
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
         path = tool_parameters.get("path")
         client = get_client(self, tool_parameters)
-        client.delete(path)
-        yield self.create(f"SUCCESS")
+        data = client.load_once(path)
+        meta = client.get_file_metadata(path)
+        yield self.create_blob_message(blob=data, meta=meta)

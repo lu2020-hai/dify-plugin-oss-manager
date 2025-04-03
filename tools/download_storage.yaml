@@ -1,0 +1,97 @@
+identity:
+  name: download_storage
+  author: lu2020
+  label:
+    en_US: Download Files
+    zh_Hans: 下载文件
+
+description:
+  human:
+    en_US: Download a file from the specified path. This tool allows you to retrieve and download files by providing the full path.
+    zh_Hans: 根据指定路径下载文件。通过提供完整路径，您可以获取并下载目标文件。
+  llm: Download a file from the specified path.
+
+parameters:
+  - name: path
+    type: string
+    required: true
+    label:
+      en_US: File Path
+      zh_Hans: 文件路径
+    human_description:
+      en_US: The full path of the file to download, including the directory and file name. For example, "home/user/documents/file.txt".
+      zh_Hans: 要下载的文件完整路径，包括目录和文件名。例如："home/user/documents/file.txt"。
+    llm_description: The full path of the file to download, including the directory and file name. Ensure that the path is valid and accessible.
+    form: llm
+    placeholder:
+      en_US: Enter the full path to the file you want to download (e.g., "home/user/documents/file.txt").
+      zh_Hans: 输入要下载的文件完整路径（例如："home/user/documents/file.txt"）。
+
+  - name: storage_type
+    type: select
+    required: false
+    label:
+      en_US: Object Storage Type
+      zh_Hans: 对象存储类型
+    human_description:
+      en_US: Select the type of object storage service you want to connect to.
+      zh_Hans: 选择您要连接的对象存储服务类型。
+    form: form
+    options:
+      - value: s3
+        label:
+          en_US: Amazon S3
+          zh_Hans: 亚马逊 S3
+      - value: aliyun-oss
+        label:
+          en_US: Alibaba Cloud OSS
+          zh_Hans: 阿里云 OSS
+      - value: azure-blob
+        label:
+          en_US: Azure Blob Storage
+          zh_Hans: Azure Blob 存储
+      - value: baidu-obs
+        label:
+          en_US: Baidu Object Storage (BOS)
+          zh_Hans: 百度对象存储 (BOS)
+      - value: google-storage
+        label:
+          en_US: Google Cloud Storage
+          zh_Hans: 谷歌云存储
+      - value: huawei-obs
+        label:
+          en_US: Huawei Cloud OBS
+          zh_Hans: 华为云 OBS
+      - value: oci-storage
+        label:
+          en_US: Oracle Cloud Infrastructure Storage
+          zh_Hans: 甲骨文云基础设施存储
+      - value: tencent-cos
+        label:
+          en_US: Tencent Cloud COS
+          zh_Hans: 腾讯云 COS
+      - value: volcengine-tos
+        label:
+          en_US: Volcengine TOS
+          zh_Hans: 火山引擎 TOS
+      - value: supabase
+        label:
+          en_US: Supabase Storage
+          zh_Hans: Supabase 存储
+  - name: config_json
+    human_description:
+      en_US: 'A JSON object containing the configuration details for the selected object storage service. For example, S3 configuration: {"S3_USE_AWS_MANAGED_IAM": "false", "S3_ENDPOINT": "https://s3.amazonaws.com", "S3_BUCKET_NAME": "my-bucket", "S3_ACCESS_KEY": "your-access-key", "S3_SECRET_KEY": "your-secret-key", "S3_REGION": "us-east-1"}.'
+      zh_Hans: '包含所选对象存储服务配置信息的 JSON 对象。例如，S3 配置：{"S3_USE_AWS_MANAGED_IAM": "false", "S3_ENDPOINT": "https://s3.amazonaws.com", "S3_BUCKET_NAME": "我的存储桶", "S3_ACCESS_KEY": "访问密钥", "S3_SECRET_KEY": "秘密密钥", "S3_REGION": "区域"}。'
+    label:
+      en_US: Configuration JSON
+      zh_Hans: 配置 JSON
+    placeholder:
+      en_US: 'Enter the configuration in JSON format. '
+      zh_Hans: '请输入 JSON 格式的配置.'
+    required: false
+    form: form
+    type: secret-input
+    url: https://docs.dify.ai/getting-started/install-self-hosted/environments#file-storage-configuration
+extra:
+  python:
+    source: tools/download_storage.py
