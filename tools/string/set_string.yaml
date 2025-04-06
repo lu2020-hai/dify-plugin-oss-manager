@@ -1,0 +1,59 @@
+identity:
+  name: set_string
+  author: hjlarry
+  label:
+    en_US: set string
+    zh_Hans: 设置字符串
+description:
+  human:
+    en_US: To set a key-value string.
+    zh_Hans: 设置一个键值字符串。
+  llm: To set a key-value string. 
+parameters:
+  - name: group
+    type: string
+    required: false
+    label:
+      en_US: Key
+      zh_Hans: 组
+    human_description:
+      en_US: The group to which the Key belongs. This is used for aggregating related keys, such as batch writing them into a file.
+      zh_Hans: Key值所属的组。这有助于对相关Key进行聚合操作，如：批量写入文件中。
+    llm_description: Group
+    form: llm
+  - name: key
+    type: string
+    required: true
+    label:
+      en_US: Key
+      zh_Hans: 键
+    human_description:
+      en_US: The key of the string to be set
+      zh_Hans: 要设置的键
+    llm_description: Key
+    form: llm
+  - name: value
+    type: string
+    required: true
+    label:
+      en_US: Value
+      zh_Hans: 值
+    human_description:
+      en_US: The value of the string to be set
+      zh_Hans: 要设置的值
+    llm_description: Value
+    form: llm
+  - name: size
+    type: number
+    required: false
+    label:
+      en_US: Size
+      zh_Hans: 大小
+    human_description:
+      en_US: Limit the size of the string.
+      zh_Hans: 限制用户设置字符串的大小。
+    llm_description: Size
+    form: form
+extra:
+  python:
+    source: tools/string/set_string.py

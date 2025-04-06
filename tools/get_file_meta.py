@@ -6,6 +6,8 @@ class FileType(Enum):
     DOCUMENT = "document"
     AUDIO = "audio"
     VIDEO = "video"
+    ARCHIVE = "archive"  # 新增：用于压缩文件
+    CODE = "code"        # 新增：用于代码文件
     CUSTOM = "custom"
 
 # 定义扩展名到 MIME 类型的映射
@@ -28,14 +30,24 @@ EXTENSION_TO_MIME = {
     ".avi": "video/x-msvideo",
     ".mkv": "video/x-matroska",
     ".txt": "text/plain",
+    ".md": "text/markdown",  # 新增：Markdown 文件
+    ".zip": "application/zip",
+    ".rar": "application/x-rar-compressed",
+    ".csv": "text/csv",
+    ".json": "application/json",
+    ".html": "text/html",
+    ".css": "text/css",
+    ".js": "application/javascript",
+    ".svg": "image/svg+xml",
 }
 
-# 定义 MIME 类型到 FileType 的映射
+# 定义 MIME 类型到 FileType 的映射（新增映射）
 MIME_TO_FILE_TYPE = {
     "image/jpeg": FileType.IMAGE,
     "image/png": FileType.IMAGE,
     "image/gif": FileType.IMAGE,
     "image/bmp": FileType.IMAGE,
+    "image/svg+xml": FileType.IMAGE,  # SVG 图像
     "application/pdf": FileType.DOCUMENT,
     "application/msword": FileType.DOCUMENT,
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document": FileType.DOCUMENT,
@@ -43,12 +55,20 @@ MIME_TO_FILE_TYPE = {
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": FileType.DOCUMENT,
     "application/vnd.ms-powerpoint": FileType.DOCUMENT,
     "application/vnd.openxmlformats-officedocument.presentationml.presentation": FileType.DOCUMENT,
+    "text/plain": FileType.DOCUMENT,
+    "text/markdown": FileType.DOCUMENT,  # Markdown 文件
+    "text/csv": FileType.DOCUMENT,       # CSV 文件
+    "application/json": FileType.DOCUMENT,  # JSON 文件
+    "text/html": FileType.DOCUMENT,      # HTML 文件
+    "text/css": FileType.CODE,           # CSS 文件
+    "application/javascript": FileType.CODE,  # JavaScript 文件
     "audio/mpeg": FileType.AUDIO,
     "audio/wav": FileType.AUDIO,
     "video/mp4": FileType.VIDEO,
     "video/x-msvideo": FileType.VIDEO,
     "video/x-matroska": FileType.VIDEO,
-    "text/plain": FileType.DOCUMENT,
+    "application/zip": FileType.ARCHIVE,  # ZIP 压缩文件
+    "application/x-rar-compressed": FileType.ARCHIVE,  # RAR 压缩文件
 }
 
 def infer_file_info(filename: str):

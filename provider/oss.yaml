@@ -10,9 +10,14 @@ identity:
   icon: icon.svg
 tools:
   - tools/save_storage.yaml
+  - tools/save_string_storage.yaml
+  - tools/save_group_storage.yaml
   - tools/delete_storage.yaml
   - tools/query_files_storage.yaml
   - tools/download_storage.yaml
+  - tools/string/set_string.yaml
+  - tools/string/get_string.yaml
+  - tools/string/get_group.yaml
 extra:
   python:
     source: provider/oss.py

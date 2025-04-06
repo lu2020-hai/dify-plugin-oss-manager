@@ -1,0 +1,26 @@
+identity:
+  name: get_group
+  author: lu2020
+  label:
+    en_US: Get Group
+    zh_Hans: 获取字符串组
+description:
+  human:
+    en_US: Retrieve a group of key-value pairs.
+    zh_Hans: 获取字符串组集合。
+  llm: Retrieve a group of key-value pairs.
+parameters:
+  - name: group
+    type: string
+    required: false
+    label:
+      en_US: Key
+      zh_Hans: 组
+    human_description:
+      en_US: The group to which the Key belongs.
+      zh_Hans: Key值所属的组。
+    llm_description: Group
+    form: llm
+extra:
+  python:
+    source: tools/string/get_group.py
