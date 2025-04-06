@@ -31,6 +31,11 @@
 | 类型                 | 英文名称                          | 中文名称              |
 |----------------------|-----------------------------------|-----------------------|
 | Amazon S3            | Amazon S3                        | 亚马逊 S3             |
+
+## 暂不支持的对象存储服务
+
+| 类型                 | 英文名称                          | 中文名称              |
+|----------------------|-----------------------------------|-----------------------|
 | Alibaba Cloud OSS    | Alibaba Cloud OSS                | 阿里云 OSS            |
 | Azure Blob Storage   | Azure Blob Storage               | Azure Blob 存储       |
 | Baidu Object Storage | Baidu Object Storage (BOS)       | 百度对象存储 (BOS)    |
@@ -39,7 +44,6 @@
 | Oracle Cloud Storage | Oracle Cloud Infrastructure Storage | 甲骨文云基础设施存储 |
 | Tencent Cloud COS    | Tencent Cloud COS                | 腾讯云 COS            |
 | Volcengine TOS       | Volcengine TOS                   | 火山引擎 TOS          |
-| Supabase Storage     | Supabase Storage                 | Supabase 存储         |
 
 ---
 
